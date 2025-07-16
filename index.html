@@ -16,15 +16,15 @@
     }
     .grid {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
+      grid-template-columns: repeat(10, 1fr);
       gap: 20px;
     }
-    .year {
+    .semester {
       background: #e4ecf1;
       padding: 10px;
       border-radius: 10px;
     }
-    .year h2 {
+    .semester h2 {
       text-align: center;
       color: #3e3b5c;
     }
@@ -63,14 +63,16 @@
   <h1>Malla Curricular Medicina Veterinaria - UOH</h1>
   <div class="grid" id="malla"></div>  <script>
     const cursos = {
-      "1° Año": [
+      "1° Semestre": [
         {nombre: "Anatomía Animal"},
         {nombre: "Biología"},
         {nombre: "Botánica"},
         {nombre: "Zoología"},
         {nombre: "Matemáticas"},
         {nombre: "Introducción a la Medicina Veterinaria"},
-        {nombre: "Comunicación Oral y Escrita"},
+        {nombre: "Comunicación Oral y Escrita"}
+      ],
+      "2° Semestre": [
         {nombre: "Anatomía Comparada", req: ["Anatomía Animal"]},
         {nombre: "Biología del Desarrollo e Histología", req: ["Biología"]},
         {nombre: "Ecología General", req: ["Botánica", "Zoología"]},
@@ -79,14 +81,16 @@
         {nombre: "Química"},
         {nombre: "Inglés 1"}
       ],
-      "2° Año": [
+      "3° Semestre": [
         {nombre: "Fisiología 1", req: ["Anatomía Animal", "Química"]},
         {nombre: "Bioética y Deontología"},
         {nombre: "Bioquímica", req: ["Química"]},
         {nombre: "Etología y Bienestar Animal"},
         {nombre: "Epidemiología", req: ["Bioestadística"]},
         {nombre: "Economía", req: ["Bioestadística"]},
-        {nombre: "Inglés 2"},
+        {nombre: "Inglés 2"}
+      ],
+      "4° Semestre": [
         {nombre: "Fisiología 2", req: ["Fisiología 1"]},
         {nombre: "Inmunología", req: ["Biología", "Bioquímica"]},
         {nombre: "Microbiología 1", req: ["Biología", "Bioquímica"]},
@@ -94,19 +98,67 @@
         {nombre: "Nutrición Animal", req: ["Bioquímica"]},
         {nombre: "Administración de Proyectos", req: ["Economía"]},
         {nombre: "Inglés 3"}
+      ],
+      "5° Semestre": [
+        {nombre: "Patología General"},
+        {nombre: "Parasitología", req: ["Zoología"]},
+        {nombre: "Microbiología 2", req: ["Microbiología 1"]},
+        {nombre: "Gestión Ambiental y en Emergencias", req: ["Manejo y Conservación de Fauna Silvestre"]},
+        {nombre: "Alimentación Animal", req: ["Nutrición Animal"]},
+        {nombre: "Planificación y Evaluación de Proyectos Pecuarios", req: ["Administración de Proyectos"]},
+        {nombre: "Inglés 4"}
+      ],
+      "6° Semestre": [
+        {nombre: "Semiología Animales Mayores", req: ["Patología General", "Fisiopatología", "Fisiología 2"]},
+        {nombre: "Semiología Animales Menores", req: ["Patología General", "Fisiopatología", "Fisiología 2"]},
+        {nombre: "Farmacología", req: ["Patología General", "Parasitología", "Microbiología 2"]},
+        {nombre: "Genética", req: ["Bioestadística"]},
+        {nombre: "Enfermedades Infecciosas", req: ["Microbiología 1", "Parasitología"]},
+        {nombre: "Inglés 5"}
+      ],
+      "7° Semestre": [
+        {nombre: "Imagenología", req: ["Anatomía Comparada", "Semiología Animales Mayores", "Semiología Animales Menores"]},
+        {nombre: "Patología Clínica", req: ["Fisiopatología"]},
+        {nombre: "Anatomía Patológica", req: ["Anatomía Comparada", "Patología General"]},
+        {nombre: "Reproducción", req: ["Fisiología 2"]},
+        {nombre: "Inocuidad de los Alimentos", req: ["Epidemiología", "Enfermedades Infecciosas"]},
+        {nombre: "Zootecnia 1", req: ["Alimentación Animal", "Planificación y Evaluación de Proyectos Pecuarios"]},
+        {nombre: "Electivo"}
+      ],
+      "8° Semestre": [
+        {nombre: "Medicina Interna de Animales Mayores 1", req: ["Imagenología", "Anatomía Patológica", "Patología Clínica"]},
+        {nombre: "Medicina Interna de Animales Menores 1", req: ["Imagenología", "Anatomía Patológica", "Patología Clínica"]},
+        {nombre: "Patología Producciones", req: ["Fisiopatología", "Zootecnia 1"]},
+        {nombre: "Obstetricia y Ginecología", req: ["Reproducción"]},
+        {nombre: "Anestesiología y Cirugía", req: ["Farmacología", "Imagenología", "Patología Clínica"]},
+        {nombre: "Zootecnia 2", req: ["Zootecnia 1"]},
+        {nombre: "Metodología de la Investigación", req: ["Epidemiología"]}
+      ],
+      "9° Semestre": [
+        {nombre: "Medicina Interna de Animales Mayores 2", req: ["Medicina Interna de Animales Mayores 1"]},
+        {nombre: "Medicina Interna de Animales Menores 2", req: ["Medicina Interna de Animales Menores 1"]},
+        {nombre: "Zootecnia 3", req: ["Zootecnia 2"]},
+        {nombre: "Módulo Integrador: Médico Veterinario en una Salud", req: ["Medicina Interna de Animales Mayores 1", "Medicina Interna de Animales Menores 1", "Anestesiología y Cirugía", "Zootecnia 2", "Patología Producciones"]},
+        {nombre: "Trabajo de Titulación 1", req: ["Medicina Interna de Animales Mayores 1", "Medicina Interna de Animales Menores 1", "Anestesiología y Cirugía", "Zootecnia 2", "Patología Producciones"]}
+      ],
+      "10° Semestre": [
+        {nombre: "Internado Animales Mayores", req: ["Medicina Interna de Animales Mayores 2"]},
+        {nombre: "Internado Animales Menores", req: ["Medicina Interna de Animales Menores 2"]},
+        {nombre: "Práctica Medicina Preventiva y Ambiental", req: ["Módulo Integrador: Médico Veterinario en una Salud"]},
+        {nombre: "Electivo"},
+        {nombre: "Trabajo de Titulación 2", req: ["Trabajo de Titulación 1"]}
       ]
-      // Puedes continuar agregando los siguientes años aquí...
     };
 
     const aprobados = JSON.parse(localStorage.getItem('aprobados') || '[]');
 
     function crearMalla() {
       const malla = document.getElementById('malla');
-      Object.entries(cursos).forEach(([año, materias]) => {
+      Object.entries(cursos).forEach(([semestre, materias]) => {
         const contenedor = document.createElement('div');
-        contenedor.classList.add('year');
+        contenedor.classList.add('semester');
         const h2 = document.createElement('h2');
-        h2.textContent = año;
+        h2.textContent = semestre;
         contenedor.appendChild(h2);
 
         materias.forEach(curso => {
